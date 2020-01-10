@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':libcommon'
 rootProject.name='AndroidFlutter'
 setBinding(new Binding([gradle: this]))                                 // new
 evaluate(new File(                                                      // new
