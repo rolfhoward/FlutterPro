@@ -34,7 +34,7 @@ android {
 进入到已存在的项目目录下执行下列命令
 flutter create -t module flutter_base
 执行完成后会创建一个flutter_base的module
-![image](./doc/image/flutter_module_example.png)
+![image](https://github.com/rolfhoward/AndroidFlutter/blob/master/doc/image/flutter_module_example.png)
 
 3、JDK要求
 Flutter Android引擎使用了Java 8的特性。在你的Android项目的build.gradle文件中添加如下配置：
@@ -125,7 +125,7 @@ android {
     });
     在使用withCachedEngine()工厂方法时，传递与缓存所需的FlutterEngine时相同的ID。
 
-    
+
 
 
 
