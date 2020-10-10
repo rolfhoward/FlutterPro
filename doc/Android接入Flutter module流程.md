@@ -1,34 +1,34 @@
-#集成到现有应用
-##有时候，用 Flutter 一次性重写整个已有的应用是不切实际的。对于这些情况，Flutter 可以作为一个库或模块，集成进现有的应用当中。模块引入到您的 Android 或 iOS 应用（当前支持的平台）中，以使用 Flutter 来渲染一部分的 UI，或者仅运行多平台共享的 Dart 代码逻辑。
+# 集成到现有应用
+## 有时候，用 Flutter 一次性重写整个已有的应用是不切实际的。对于这些情况，Flutter 可以作为一个库或模块，集成进现有的应用当中。模块引入到您的 Android 或 iOS 应用（当前支持的平台）中，以使用 Flutter 来渲染一部分的 UI，或者仅运行多平台共享的 Dart 代码逻辑。
 仅需几步，你就可以将高效而富有表现力的 Flutter 引入您的应用。
 在 Flutter v1.12 中，添加到现有应用的基本场景已被支持，每个应用在同一时间可以集成一个全屏幕的 Flutter 实例。目前仍有以下限制：
-###运行多个 Flutter 实例，或在屏幕局部上运行 Flutter 可能会导致不可预测的行为；
-###在后台模式使用 Flutter 的能力还在开发中；
-###将 Flutter 库打包进另一个可共享的库或将多个 Flutter 库打包到同一个应用中，都未被支持。
+### 运行多个 Flutter 实例，或在屏幕局部上运行 Flutter 可能会导致不可预测的行为；
+### 在后台模式使用 Flutter 的能力还在开发中；
+### 将 Flutter 库打包进另一个可共享的库或将多个 Flutter 库打包到同一个应用中，都未被支持。
 
-##已支持的特性
-###在 Gradle 脚本中添加一个自动构建并引入 Flutter 模块的 Flutter SDK Hook。
-###将 Flutter 模块构建为通用的 Android Archive (AAR) 以便集成到您自己的构建系统中，并提高 Jetifier 与 AndroidX 的互操作性；
-###FlutterEngine API 用于启动并持续地为挂载 FlutterActivity 或 FlutterFragment 提供独立的 Flutter 环境；
-###Android Studio 的 Android 与 Flutter 同时编辑，以及 Flutter module 创建与导入向导；
-###支持了 Java 和 Kotlin 为宿主的应用程序；
-###Flutter 模块可以通过使用 Flutter plugins 与平台进行交互。 Android 平台的 plugin 应该迁移至 V2 plugin API 以确保最佳的兼容性。在 Flutter v1.12，大多数 Flutter 团队维护 的 plugin，以及 FlutterFire 都已完成迁移；
-###支持通过从 IDE 或命令行中使用 flutter attach 来实现 Flutter 调试与有状态的热重载。
+## 已支持的特性
+### 在 Gradle 脚本中添加一个自动构建并引入 Flutter 模块的 Flutter SDK Hook。
+### 将 Flutter 模块构建为通用的 Android Archive (AAR) 以便集成到您自己的构建系统中，并提高 Jetifier 与 AndroidX 的互操作性；
+### FlutterEngine API 用于启动并持续地为挂载 FlutterActivity 或 FlutterFragment 提供独立的 Flutter 环境；
+### Android Studio 的 Android 与 Flutter 同时编辑，以及 Flutter module 创建与导入向导；
+### 支持了 Java 和 Kotlin 为宿主的应用程序；
+### Flutter 模块可以通过使用 Flutter plugins 与平台进行交互。 Android 平台的 plugin 应该迁移至 V2 plugin API 以确保最佳的兼容性。在 Flutter v1.12，大多数 Flutter 团队维护 的 plugin，以及 FlutterFire 都已完成迁移；
+### 支持通过从 IDE 或命令行中使用 flutter attach 来实现 Flutter 调试与有状态的热重载。
 
 将 Flutter module 集成到 Android 项目
-1、
-[特别注意：当前现有应用可能支持mips及x86/x86_64架构，但是Flutter当前只支持构建armeabi-v7a 和 arm64-v8a架构的AOT模式的编译库，因此建议apk使用abiFilters Android构建的插件API来限制支持的架构，避免出现丢失libflutter.so的运行时异常
 
-android {
-  //...
-  defaultConfig {
-    ndk {
-      // Filter for architectures supported by Flutter.
-      abiFilters 'armeabi-v7a', 'arm64-v8a'
+1、[特别注意：当前现有应用可能支持mips及x86/x86_64架构，但是Flutter当前只支持构建armeabi-v7a 和 arm64-v8a架构的AOT模式的编译库，因此建议apk使用abiFilters Android构建的插件API来限制支持    的架构，避免出现丢失libflutter.so的运行时异常
+
+      android {
+        //...
+        defaultConfig {
+          ndk {
+            // Filter for architectures supported by Flutter.
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+          }
+        }
     }
-  }
-}
-]
+  ]
 
 2、创建Flutter module
 进入到已存在的项目目录下执行下列命令
