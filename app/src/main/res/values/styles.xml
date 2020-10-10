@@ -10,4 +10,10 @@
     <style name="MyTheme" parent="@style/AppTheme">
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <!-- toolbar标题文字大小 -->
+    <style name="ToolbarSubStyle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
 </resources>

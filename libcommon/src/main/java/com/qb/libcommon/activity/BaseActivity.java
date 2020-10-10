@@ -1,10 +1,17 @@
 package com.qb.libcommon.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+
+import com.bumptech.glide.Glide;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 基础Activity类
@@ -17,6 +24,19 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         setContentView(getLayoutId());
         initView();
         initData();
+        Handler handler = new Handler(){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                super.handleMessage(msg);
+            }
+        };
+    }
+
+    class MyHanlder extends Handler{
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+        }
     }
 
     /**初始化布局*/
