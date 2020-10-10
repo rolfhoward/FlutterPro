@@ -59,7 +59,7 @@ android {
      }
 
 5、向 Android 应用中添加 Flutter 页面
-    # 在AndroidManifest.xml中添加一个FlutterActivity
+####  在AndroidManifest.xml中添加一个FlutterActivity
     <activity
       android:name="io.flutter.embedding.android.FlutterActivity"
       android:theme="@style/LaunchTheme"
