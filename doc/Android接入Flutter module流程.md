@@ -68,7 +68,7 @@ android {
       android:windowSoftInputMode="adjustResize"
       />
       对@style/LaunchTheme的引用可以被任何想要应用到FlutterActivity的Android主题所代替。主题的选择决定了应用到Android系统上的颜色，比如Android的导航条，以及在Flutter UI首次呈现之前FlutterActivity的背景颜色
-    #启动FlutterActivity,通过一个按钮事件启动Flutter界面
+ #### 启动FlutterActivity,通过一个按钮事件启动Flutter界面
     myButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -90,7 +90,7 @@ android {
       }
     });
     将“/my_route”替换为所需的初始路由，使用withNewEngine()工厂方法配置一个FlutterActivity，该活动在内部创建自己的FlutterEngine实例。这带来了一个重要的初始化时间。另一种方法是指示FlutterActivity使用预先预热的、缓存的FlutterEngine，这将最小化的初始化时间。
-    #使用缓冲的FlutterEngine
+#### 使用缓冲的FlutterEngine
     默认情况下，每个FlutterActivity都创建自己的FlutterEngine。每个FlutterEngine都有一个重要的预热时间。这意味着在您的Flutter界面变得可见之前，启动一个标准的FlutterActivity会有一个短暂的延迟。为了尽量减少这种延迟，你可以在到达你的FlutterActivity之前预热一个抖动引擎，然后你可以使用你的预热过的抖动引擎。
     要预热一个FlutterEngine，请在应用程序中找到一个合理的位置来实例化一个FlutterEngine。下面的例子在应用程序类中任意预热一个FlutterEngine:
     public class MyApplication extends Application {
