@@ -93,84 +93,161 @@ class MeState extends State {
                 color: MColors.base_color,
                 height: 150,
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  //顶部操作
+              SafeArea(
+                  child: Column(children: [
+                //顶部操作
+                Stack(//相对布局
+                    children: <Widget>[
+                  Align(
+                      alignment: Alignment.bottomLeft,
+                      child: IconButton(
+                        padding: EdgeInsets.only(
+                            left: 10.0, top: 10.0, right: 10.0, bottom: 1.0),
+                        constraints: BoxConstraints(),
+                        icon: Image.asset('assets/images/icon_setting.png'),
+                        onPressed: () {},
+                      )),
+                  Align(
+                      alignment: Alignment.bottomRight,
+                      child: IconButton(
+                        padding: EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10.0, bottom: 1.0),
+                        constraints: BoxConstraints(),
+                        icon: Image.asset('assets/images/icon_share.png'),
+                        onPressed: () {},
+                      )),
+                ]),
+                Stack(children: [
+                  //
                   Container(
-                    margin: EdgeInsets.only(top: 12),
-                    child: Stack(  //相对布局
-                        children: <Widget>[
-                          Align(
-                              alignment: Alignment.topLeft,
-                              child: IconButton(
-                                iconSize: 24,
-                                icon: Image.asset('assets/images/icon_setting.png'),
-                                onPressed: () {},
-                              )),
-                          Align(
-                              alignment: Alignment.topRight,
-                              child: IconButton(
-                                iconSize: 24,
-                                icon: Image.asset('assets/images/icon_share.png'),
-                                onPressed: () {},
-                              )),]
+                    width: double.infinity,
+                    margin: EdgeInsets.only(top: 37.0, left: 10.0, right: 10.0),
+                    decoration: new BoxDecoration(
+                      color: Colors.white,
+                      //设置四周圆角 角度
+                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     ),
-                  ),
-                  Stack(
-                      alignment: Alignment(0.0, 0.0), children: [
-                    //
-                    Container(
-                      width: double.infinity,
-                      decoration: new BoxDecoration(
-                        color: Colors.white,
-                        //设置四周圆角 角度
-                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            //设置 child 居中
-                            alignment: Alignment.topRight,
-                            height: 50,
-                            width: 50,
-                            //边框设置
-                            decoration: new BoxDecoration(
-                              //背景
-                              color: Colors.white,
-                              //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
-                              borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                              //设置四周边框
-                              border: new Border.all(width: 1, color: Colors.red),
+                    child: Container(
+                        width: double.infinity,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            //是否在线图标
+                            IgnorePointer(
+                                ignoring: true,
+                                child: new Opacity(
+                                  opacity: 0.0,  //是否隐藏  1.0显示  0.0隐藏
+                                  child: Container(
+                                    alignment: Alignment.topRight,
+                                    margin: EdgeInsets.only(top: 6.0, right: 6.0),
+                                    child: Container(
+                                      //边框设置
+                                      padding: EdgeInsets.only(left: 7.0, top: 2.0, right: 7.0, bottom: 2.0),
+                                      decoration: new BoxDecoration(
+                                        //背景
+                                        color: Colors.white,
+                                        //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(16.0)),
+                                        //设置四周边框
+                                        border: new Border.all(
+                                            width: 1, color: MColors.base_red_color),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          ClipOval(
+                                            child: Container(
+                                              width: 8.0,
+                                              height: 8.0,
+                                              color: MColors.base_red_color,
+                                            ),
+                                          ),
+                                          SizedBox(width: 4.0),
+                                          Text("在线", style: TextStyle(
+                                              fontSize: 12,
+                                              color: MColors.base_red_color))
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            SizedBox(height: 12.0),
+                            //用户名
+                            Text("小栗子",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: MColors.base_text_black_color)),
+                            //地址信息
+                            Container(
+                              alignment: Alignment.topCenter,
+                              margin: EdgeInsets.only(top: 10.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text("黑龙江省",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: MColors.text_grey_color)),
+                                  SizedBox(width: 6.0),
+                                  Text("哈尔滨市",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: MColors.text_grey_color)),
+                                  SizedBox(width: 6.0),
+                                  Text("26岁",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: MColors.text_grey_color)),
+                                  SizedBox(width: 6.0),
+                                  Text("模特",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: MColors.text_grey_color)),
+                                ],
+                              ),
                             ),
-                            child: Text("在线"),
-                          )
-                        ],
-                      ),
-                    ),
-                    Column(
-                      children: <Widget>[
-                        new Container(
-                          // decoration: BoxDecoration(
-                          //     shape: BoxShape.rectangle,
-                          //     boxShadow: [
-                          //       ///阴影颜色/位置/大小等
-                          //       BoxShadow(
-                          //           color: Colors.grey[300],
-                          //           offset: Offset(0, 0),
-                          //           blurRadius: 3),
-                          //     ]),
-                          child: Padding(
-                            padding: const EdgeInsets.all(0.0),
-                            child:
-                            Image.asset('assets/images/icon.png'),
-                          ),
-                        )
-                      ],
-                    )
-                  ])
-                ],
-              )
+                            Container(
+                              alignment: Alignment.topCenter,
+                              margin: EdgeInsets.only(top: 6.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset('assets/images/icon_location.png'),
+                                  SizedBox(width: 3.0),
+                                  Text("456km",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: MColors.text_grey_color)),
+                                  SizedBox(width: 6.0),
+                                  Text("约会范围：",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: MColors.text_grey_color)),
+                                  SizedBox(width: 6.0),
+                                  Text("北京市",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: MColors.text_grey_color)),
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        )),
+                  ),
+                  Center(
+                      child: Container(
+                    width: 74.0,
+                    height: 74.0,
+                    alignment: Alignment.center,
+                    child:
+                        Image.asset('assets/images/icon_user_default_add.png'),
+                  ))
+                ])
+              ]))
             ],
           ),
         ),
