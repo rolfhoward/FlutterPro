@@ -1,5 +1,7 @@
+include ':libVideo'
+include ':libAudio'
 include ':app', ':libcommon'
-rootProject.name='AndroidFlutter'
+rootProject.name='FlutterPro'
 setBinding(new Binding([gradle: this]))                                 // new
 evaluate(new File(                                                      // new
         settingsDir,                                               // new
