@@ -1,11 +1,12 @@
 package com.qb.androidflutter
 
 import android.app.Application
+import io.flutter.app.FlutterApplication
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
 import io.flutter.embedding.engine.dart.DartExecutor
 
-class BaseApplication : Application() {
+class BaseApplication : FlutterApplication() {
     private lateinit var flutterEngine : FlutterEngine
     companion object{
         var engineId:String = "qb_android_engine_id"

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/resource/colors.dart';
-import 'package:flutter_base/util/device_utils.dart';
-import 'package:relative_layout/relative_layout.dart';
 
 class MeHome extends StatefulWidget {
   @override

@@ -6,9 +6,9 @@ part 'ResultModel.g.dart';
 //flutter packages pub run build_runner build
 @JsonSerializable()
 class ResultModel{
-  int code;
-  String message;
-  ResultPageModel data;
+  int? code;
+  String? message;
+  ResultPageModel? data;
 
   ResultModel(this.code, this.message, this.data,);
 

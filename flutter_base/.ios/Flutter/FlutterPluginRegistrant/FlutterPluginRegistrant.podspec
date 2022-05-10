@@ -19,7 +19,9 @@ Depends on all your plugins, and provides a function to register them.
   s.static_framework    = true
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.dependency 'Flutter'
-  s.dependency 'amap_location'
+  s.dependency 'amap_flutter_location'
   s.dependency 'fluttertoast'
-  s.dependency 'shared_preferences'
+  s.dependency 'permission_handler'
+  s.dependency 'shared_preferences_ios'
+  s.dependency 'tencent_im_sdk_plugin'
 end

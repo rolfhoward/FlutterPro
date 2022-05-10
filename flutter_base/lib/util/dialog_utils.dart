@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoadingDialog extends CupertinoAlertDialog {
-  BuildContext currentContext;
 
   String _message = "";
 
@@ -26,7 +25,7 @@ class LoadingDialog extends CupertinoAlertDialog {
     });
   }
 
-  bool showing;
+  bool showing = false;
 
   hide(BuildContext context) {
     if (showing) {
@@ -36,7 +35,6 @@ class LoadingDialog extends CupertinoAlertDialog {
 
   @override
   Widget build(BuildContext context) {
-    currentContext = context;
     return WillPopScope(
       onWillPop: () => Future.value(!bool.fromEnvironment("dart.vm.product")),
       child: LayoutBuilder(

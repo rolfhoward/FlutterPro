@@ -31,6 +31,9 @@ class MainActivity : BaseToolBarActivity() {
         go_invocationHandler.setOnClickListener {
             startActivity(Intent(this, DynamicProxy::class.java));
         }
-
+        var speed = GetUpAndDownloadSpeed();
+        System.out.println("====="+speed.getTotalUpSpeed())
+        System.out.println("====="+speed.getTotalDownloadSpeed())
+        System.out.println("====="+speed.getUpSpeedByUid(getApplicationInfo().uid))
     }
 }

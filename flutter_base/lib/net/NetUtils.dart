@@ -14,19 +14,12 @@ enum Method {
 
 class NetUtils{
 
-  static NetUtils _instance;
+  static final NetUtils _instance = NetUtils._();
 
-  static NetUtils getInstance() {
-    if (_instance == null) {
-      _instance = new NetUtils();
-    }
-    return _instance;
-  }
-
-  Dio dio;
-  BaseOptions options;
-
-  NetUtils() {
+  Dio? dio;
+  BaseOptions? options;
+// 私有构造器
+  NetUtils._(){
     dio = new Dio()
       ..options = BaseOptions(
           baseUrl: ApiConfig.baseUrl,
@@ -34,28 +27,32 @@ class NetUtils{
           receiveTimeout: 10000);
   }
 
-  Observable<ResultModel> post(String url,{dynamic body,Map<String, dynamic> queryParameters}) =>
-      Observable.fromFuture(_post(url, body: body,queryParameters: queryParameters)).delay(Duration(milliseconds: 500)).asBroadcastStream();
+  static NetUtils getInstance() =>_instance;
 
-  Future<ResultModel> _post(String url, {dynamic body, Map<String, dynamic> queryParameters}) async {
-    var response = await dio.post(url, data: body, queryParameters: queryParameters);
-    var res = ResultModel.fromJson(response.data);
+
+
+  Future<ResultModel> post(String url,{dynamic body,Map<String, dynamic>? queryParameters}) =>
+      _post(url, body: body,queryParameters: queryParameters);
+
+  Future<ResultModel> _post(String url, {dynamic body, Map<String, dynamic>? queryParameters}) async {
+    var response = await dio?.post(url, data: body, queryParameters: queryParameters);
+    var res = ResultModel.fromJson(response?.data);
     return res;
   }
 
-  static Future postT(String url, {Map<String, dynamic> params, Function errorCallback}) async{
+  static Future<ResultModel> postT(String url, {Map<String, dynamic>? params, Function? errorCallback}) async{
     Dio dio = Dio();
     Response response = await dio.post(url, queryParameters:params);
     return handleDataSource(response);
   }
 
-  Future getT(String url, {Map<String, dynamic> params}) async {
-    var response = await dio.post(url, queryParameters: params);
+  Future<ResultModel> getT(String url, {Map<String, dynamic>? params}) async {
+    var response = await dio!.post(url, queryParameters: params);
     return response.data;
   }
 
   static  handleDataSource (Response response){
-    int code = response.statusCode;
+    int code = response.statusCode!;
     print("code:$code");
     if(code == 200){
       print(response.data);

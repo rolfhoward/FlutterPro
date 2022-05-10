@@ -137,22 +137,22 @@ class LoginState extends State<Login> {
       Fluttertoast.showToast(msg: "请输入密码", toastLength: Toast.LENGTH_SHORT);
       return;
     }
-    _loginProvider
-        .login(username, password)
-        .doOnListen(() {
-          _loading.message = "正在登录...";
-          _loading.show(context);
-        })
-        .doOnCancel(() {})
-        .listen((data) {
-          _loading.hide(context);
-          Fluttertoast.showToast(msg: "登录成功", toastLength: Toast.LENGTH_SHORT);
-          Navigator.push(
-              context, new MaterialPageRoute(builder: (context) => new Home()));
-          _passwordController.clear();
-        }, onError: (e) {
-          _loading.hide(context);
-          _passwordController.clear();
-        });
+    // _loginProvider
+    //     .login(username, password)
+        // .doOnListen(() {
+        //   _loading.message = "正在登录...";
+        //   _loading.show(context);
+        // })
+        // .doOnCancel(() {})
+        // .listen((data) {
+        //   _loading.hide(context);
+        //   Fluttertoast.showToast(msg: "登录成功", toastLength: Toast.LENGTH_SHORT);
+        //   Navigator.push(
+        //       context, new MaterialPageRoute(builder: (context) => new Home()));
+        //   _passwordController.clear();
+        // }, onError: (e) {
+        //   _loading.hide(context);
+        //   _passwordController.clear();
+        // });
   }
 }

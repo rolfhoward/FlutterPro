@@ -6,8 +6,8 @@ part of 'ResultPageModel.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ResultPageModel _$ResultPageModelFromJson(Map<String, dynamic> json) {
-  return ResultPageModel(
+ResultPageModel _$ResultPageModelFromJson(Map<String, dynamic> json) =>
+    ResultPageModel(
       json['endRow'] as int,
       json['firstPage'] as int,
       json['hasNextPage'] as bool,
@@ -25,8 +25,8 @@ ResultPageModel _$ResultPageModelFromJson(Map<String, dynamic> json) {
       json['prePage'] as int,
       json['size'] as int,
       json['startRow'] as int,
-      json['total'] as int);
-}
+      json['total'] as int,
+    );
 
 Map<String, dynamic> _$ResultPageModelToJson(ResultPageModel instance) =>
     <String, dynamic>{
@@ -47,5 +47,5 @@ Map<String, dynamic> _$ResultPageModelToJson(ResultPageModel instance) =>
       'prePage': instance.prePage,
       'size': instance.size,
       'startRow': instance.startRow,
-      'total': instance.total
+      'total': instance.total,
     };

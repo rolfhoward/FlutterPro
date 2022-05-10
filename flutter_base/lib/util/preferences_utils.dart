@@ -5,17 +5,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharePreferencesUtils {
 
   factory SharePreferencesUtils() => getSharePreferencesInstance();
-  static SharePreferencesUtils _preferencesInstance;
-  static SharedPreferences _spf;
+  static SharePreferencesUtils? _preferencesInstance;
+  static SharedPreferences? _spf;
 
   SharePreferencesUtils._();
 
   static SharePreferencesUtils getSharePreferencesInstance() {
     if (null == _preferencesInstance) {
       _preferencesInstance = SharePreferencesUtils._();
-      _preferencesInstance._init();
+      _preferencesInstance?._init();
     }
-    return _preferencesInstance;
+    return _preferencesInstance!;
   }
 
   Future _init() async {
@@ -32,11 +32,11 @@ class SharePreferencesUtils {
   saveDynamicMap(String key, Map<String, dynamic> value) {
     if (_beforeCheck()) return null;
     var jsonStr = json.encode(value);
-    _spf.setString(key, jsonStr);
+    _spf?.setString(key, jsonStr);
   }
 
   dynamic getDynamic(String key) {
-    var mapStr = _spf.getString(key);
+    var mapStr = _spf?.getString(key);
     if (mapStr != null) {
       var map = json.decode(mapStr);
       return map;

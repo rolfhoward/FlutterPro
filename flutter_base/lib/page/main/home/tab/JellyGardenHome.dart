@@ -1,13 +1,11 @@
-import 'dart:convert';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base/net/NetUtils.dart';
 import 'package:flutter_base/page/main/home/model/JellyGardenUserListModel.dart';
-import 'package:flutter_base/page/main/home/model/ResultPageModel.dart';
+import 'package:flutter_base/page/main/location/location.dart';
 import 'package:flutter_base/resource/colors.dart';
 import 'package:flutter_base/viewmodel/home/home_provider.dart';
-import 'package:flutter_refresh/flutter_refresh.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class JellyGardenHome extends StatefulWidget {
   @override
@@ -23,11 +21,11 @@ class JellyGardenState extends State<JellyGardenHome>
 
   //用于控制/监听Tab菜单切换
   //TabBar和TabBarView正是通过同一个controller来实现菜单切换和滑动状态同步的。
-  TabController tabController;
-  int _currentIndex = 0; //tab下标
-  JellyGardenUserListModel resultModel;
+  TabController? tabController;
+  int? _currentIndex = 0; //tab下标
+  JellyGardenUserListModel? resultModel;
   HomeProvider _homeProvider = HomeProvider();
-  List<JellyGardenUserModel> userModelList = new List();
+  List<JellyGardenUserModel>? userModelList = new List<JellyGardenUserModel>.empty();
   var page = 1;
 
   @override
@@ -35,7 +33,7 @@ class JellyGardenState extends State<JellyGardenHome>
     ///初始化，这个函数在生命周期中只调用一次
     super.initState();
     tabController = TabController(length: tabs.length, vsync: this);
-    tabController.addListener(() => _onTabChanged());
+    tabController?.addListener(() => _onTabChanged());
     getData();
   }
 
@@ -83,7 +81,7 @@ class JellyGardenState extends State<JellyGardenHome>
                       width: 74,
                       child: FlatButton(
                         padding: EdgeInsets.only(left: 12, right: 18),
-                        onPressed: () => {},
+                        onPressed: () => LocationHome(),
                         highlightColor: Colors.white,
                         splashColor: Colors.white,
                         child: Row(children: <Widget>[
@@ -182,31 +180,47 @@ class JellyGardenState extends State<JellyGardenHome>
       );
     }
 
-    if (userModelList.length <= 0) {
+    if (userModelList!.length <= 0) {
       return Container(
         alignment: Alignment.center,
         child: Text("暂无数据"),
       );
     }
-    return new Refresh(
-      onFooterRefresh: _onFooterRefresh,
-      onHeaderRefresh: _onHeaderRefresh,
-      childBuilder: (BuildContext context,
-          {ScrollController controller, ScrollPhysics physics}) {
-        return new Container(
-            child: new ListView.builder(
-          physics: physics,
-          controller: controller,
-          itemCount: userModelList.length,
-          itemBuilder: (context, item) {
-            return buildListData(context, userModelList[item]);
+    return new SmartRefresher(
+        enablePullDown: true,
+        enablePullUp: true,
+        header: WaterDropHeader(),
+        footer: CustomFooter(
+          builder: (BuildContext context, LoadStatus? mode) {
+            Widget body;
+            if (mode == LoadStatus.idle) {
+              body = Text("pull up load");
+            } else if (mode == LoadStatus.loading) {
+              body = CupertinoActivityIndicator();
+            } else if (mode == LoadStatus.failed) {
+              body = Text("Load Failed!Click retry!");
+            } else if (mode == LoadStatus.canLoading) {
+              body = Text("release to load more");
+            } else {
+              body = Text("No more Data");
+            }
+            return Container(
+              height: 55.0,
+              child: Center(child: body),
+            );
           },
-        ));
-      },
-    );
+        ),
+        controller: _refreshController,
+        onRefresh: _onRefresh,
+        onLoading: _onLoading,
+        child: ListView.builder(
+            itemCount: userModelList?.length,
+            itemBuilder: (context, item) {
+              return buildListData(context, userModelList![item]);
+            }));
   }
 
-  Widget buildListData(BuildContext conetxt, JellyGardenUserModel data) {
+  Widget buildListData(BuildContext context, JellyGardenUserModel data) {
     return Container(
       margin: EdgeInsets.only(left: 12, top: 15, right: 12, bottom: 15),
       child: Row(
@@ -221,7 +235,7 @@ class JellyGardenState extends State<JellyGardenHome>
                       width: 65,
                       height: 65,
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(data.photo),
+                        backgroundImage: NetworkImage(data.photo!),
                         backgroundColor: MColors.base_color,
                         radius: 40.0,
                       )),
@@ -249,7 +263,7 @@ class JellyGardenState extends State<JellyGardenHome>
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Text(data.nickName,
+                        Text(data.nickName!,
                             style:
                                 TextStyle(fontSize: 16, color: Colors.black)),
                         Padding(padding: EdgeInsets.only(left: 5)),
@@ -319,21 +333,21 @@ class JellyGardenState extends State<JellyGardenHome>
   }
 
   getData() {
-    _homeProvider
-        .loadJellyGardenList(_currentIndex, page)
-        .doOnListen(() {})
-        .doOnCancel(() {})
-        .listen((data) {
-      if (mounted) {
-        setState(() {
-          if (page == 1) {
-            userModelList.clear();
-          }
-          resultModel = JellyGardenUserListModel.fromJson(data.data);
-          userModelList.addAll(resultModel.list);
-        });
-      }
-    }, onError: (e) {});
+    // _homeProvider
+    //     .loadJellyGardenList(_currentIndex, page)
+    //     .doOnListen(() {})
+    //     .doOnCancel(() {})
+    //     .listen((data) {
+    //   if (mounted) {
+    //     setState(() {
+    //       if (page == 1) {
+    //         userModelList?.clear();
+    //       }
+    //       // resultModel = JellyGardenUserListModel.fromJson(data.data);
+    //       userModelList?.addAll(resultModel!.list!);
+    //     });
+    //   }
+    // }, onError: (e) {});
   }
 
   Future<Null> _onHeaderRefresh() {
@@ -350,11 +364,29 @@ class JellyGardenState extends State<JellyGardenHome>
     });
   }
 
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
+
+  void _onRefresh() async {
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use refreshFailed()
+    _refreshController.refreshCompleted();
+  }
+
+  void _onLoading() async {
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use loadFailed(),if no data return,use LoadNodata()
+
+    _refreshController.loadComplete();
+  }
+
   _onTabChanged() {
-    if (tabController.index.toDouble() == tabController.animation.value) {
+    if (tabController?.index?.toDouble() == tabController?.animation?.value) {
       //赋值 并更新数据
       this.setState(() {
-        _currentIndex = tabController.index;
+        _currentIndex = tabController?.index;
       });
       getData();
     }

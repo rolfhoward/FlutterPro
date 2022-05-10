@@ -9,9 +9,11 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="D:/Learn/flutter/flutter/.pub-cache/hosted/pub.flutter-io.cn/amap_location-0.1.0/android" />
-            <option value="D:/Learn/flutter/flutter/.pub-cache/hosted/pub.flutter-io.cn/fluttertoast-3.1.3/android" />
-            <option value="D:/Learn/flutter/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences-0.5.4+8/android" />
+            <option value="$PROJECT_DIR$/../../resource/flutter/.pub-cache/hosted/pub.flutter-io.cn/amap_flutter_location-3.0.0/android" />
+            <option value="$PROJECT_DIR$/../../resource/flutter/.pub-cache/hosted/pub.flutter-io.cn/fluttertoast-8.0.8/android" />
+            <option value="$PROJECT_DIR$/../../resource/flutter/.pub-cache/hosted/pub.flutter-io.cn/permission_handler-6.1.3/android" />
+            <option value="$PROJECT_DIR$/../../resource/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences_android-2.0.9/android" />
+            <option value="$PROJECT_DIR$/../../resource/flutter/.pub-cache/hosted/pub.flutter-io.cn/tencent_im_sdk_plugin-3.6.3/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/flutter_base" />
@@ -22,6 +24,7 @@
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>

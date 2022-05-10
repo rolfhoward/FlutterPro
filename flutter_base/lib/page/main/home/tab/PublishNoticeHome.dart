@@ -13,7 +13,7 @@ class PublishNoticeHome extends StatefulWidget {
 }
 
 class PublishNoticeState extends State<PublishNoticeHome> {
-  GlobalKey popBottomKey;
+  GlobalKey? popBottomKey;
   ValueNotifier<int> _sexValue = ValueNotifier<int>(1);
   ValueNotifier<int> _sortValue = ValueNotifier<int>(3);
   ValueNotifier<int> _feeValue = ValueNotifier<int>(5);
@@ -89,7 +89,7 @@ class PublishNoticeState extends State<PublishNoticeHome> {
 
   void _filter() {
     PopupWindow.showPopWindow(
-        context, "", popBottomKey, PopDirection.bottom, buildWidget(), 5);
+        context, "", popBottomKey!, PopDirection.bottom, buildWidget(), 5);
   }
 
   void getData() {}
@@ -128,7 +128,7 @@ class PublishNoticeState extends State<PublishNoticeHome> {
                 return ValueListenableBuilder(
                   valueListenable: _sexValue,
                   builder:
-                      (BuildContext context, int listenValue, Widget child) {
+                      (BuildContext context, int listenValue, Widget? child) {
                     return listItem(context, value, listenValue, _sexValue);
                   },
                 );
@@ -148,7 +148,7 @@ class PublishNoticeState extends State<PublishNoticeHome> {
                 return ValueListenableBuilder(
                   valueListenable: _sortValue,
                   builder:
-                      (BuildContext context, int listenValue, Widget child) {
+                      (BuildContext context, int listenValue, Widget? child) {
                     return listItem(context, value, listenValue, _sortValue);
                   },
                 );
@@ -168,7 +168,7 @@ class PublishNoticeState extends State<PublishNoticeHome> {
                 return ValueListenableBuilder(
                   valueListenable: _feeValue,
                   builder:
-                      (BuildContext context, int listenValue, Widget child) {
+                      (BuildContext context, int listenValue, Widget? child) {
                     return listItem(context, value, listenValue, _feeValue);
                   },
                 );

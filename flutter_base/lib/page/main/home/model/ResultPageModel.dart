@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'JellyGardenUserListModel.dart';
 part 'ResultPageModel.g.dart';
 
 @JsonSerializable()
@@ -23,7 +22,6 @@ class ResultPageModel{
   int size;
   int startRow;
   int total;
-//  List<JellyGardenUserModel> list;
 
   ResultPageModel(this.endRow, this.firstPage, this.hasNextPage,
       this.hasPreviousPage, this.isFirstPage, this.isLastPage, this.lastPage,

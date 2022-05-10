@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/page/main/home/tab/JellyGardenHome.dart';
 import 'package:flutter_base/page/main/home/tab/MeHome.dart';
@@ -72,8 +71,22 @@ class _HomePageState extends State<Home> with SingleTickerProviderStateMixin {
       new MeHome(),
     ];
 
-    //获取当前定位
-    new LocationUtils().getLocation();
+    //定位初始化
+    // LocationUtils locationUtils = new LocationUtils();
+    // locationUtils.init();
+    // locationUtils.startLocation();
+
+//     Amaplocation amaplocation = Amaplocation();
+// // 定位参数：是否连续定位
+//     AMapLocationOption option = AMapLocationOption(onceLocation: false);
+// // 监听定位回调
+//     amaplocation.onLocationChanged().listen((event) {
+//       debugPrint('$event');
+//     });
+// // 启动定位
+//     amaplocation.startLocation();
+// // 设置定位参数
+//     amaplocation.setLocationOption(option);
   }
 
 /*
