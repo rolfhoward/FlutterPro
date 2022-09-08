@@ -24,19 +24,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         setContentView(getLayoutId());
         initView();
         initData();
-        Handler handler = new Handler(){
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                super.handleMessage(msg);
-            }
-        };
-    }
-
-    class MyHanlder extends Handler{
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-        }
     }
 
     /**初始化布局*/

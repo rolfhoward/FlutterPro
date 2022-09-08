@@ -3,13 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <Button
-        android:id="@+id/lib_video_image_preview"
+        android:id="@+id/btn_audio_start_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="图片预览"/>
+        android:text="开始录制"/>
     <Button
-        android:id="@+id/lib_video_audio_service"
+        android:id="@+id/btn_audio_end_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="音频服务"/>
+        android:text="结束录制"/>
 </LinearLayout>

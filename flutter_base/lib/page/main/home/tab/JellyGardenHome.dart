@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/page/main/home/model/JellyGardenUserListModel.dart';
+import 'package:flutter_base/page/main/location/LocationUtils.dart';
 import 'package:flutter_base/page/main/location/location.dart';
 import 'package:flutter_base/resource/colors.dart';
 import 'package:flutter_base/viewmodel/home/home_provider.dart';
@@ -17,6 +18,8 @@ class JellyGardenHome extends StatefulWidget {
 
 class JellyGardenState extends State<JellyGardenHome>
     with SingleTickerProviderStateMixin {
+  LocationUtils locationUtils = new LocationUtils();
+  var _locationAddress = "定位中";
   List tabs = ["热门", "新来", "认证"];
 
   //用于控制/监听Tab菜单切换
@@ -30,46 +33,27 @@ class JellyGardenState extends State<JellyGardenHome>
 
   @override
   void initState() {
-    ///初始化，这个函数在生命周期中只调用一次
     super.initState();
+    //定位初始化
+    locationUtils.init();
+    //获取当前位置
+    locationUtils.startLocation();
+    locationUtils.setCompleteCallbackListener((result){
+      Map<String, Object>? locationResult = result;
+      String address = locationResult!['city'].toString();
+      setState(() {
+        _locationAddress = address;
+      });
+    });
+
     tabController = TabController(length: tabs.length, vsync: this);
     tabController?.addListener(() => _onTabChanged());
     getData();
   }
 
   @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-  }
-
-  @override
-  void didUpdateWidget(JellyGardenHome oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void deactivate() {
-    // TODO: implement deactivate
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  @override
-  void reassemble() {
-    // TODO: implement reassemble
-    super.reassemble();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return new Scaffold(
         backgroundColor: MColors.white,
         body: new SafeArea(
@@ -78,14 +62,16 @@ class JellyGardenState extends State<JellyGardenHome>
               Row(
                 children: <Widget>[
                   Container(
-                      width: 74,
-                      child: FlatButton(
-                        padding: EdgeInsets.only(left: 12, right: 18),
-                        onPressed: () => LocationHome(),
-                        highlightColor: Colors.white,
-                        splashColor: Colors.white,
+                      width: 88,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          padding: MaterialStateProperty.all(EdgeInsets.only(left: 12, right: 18)),
+                          overlayColor: MaterialStateColor.resolveWith((states) => Colors.transparent),
+                        ),
+                        onPressed: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => LocationHome())),
                         child: Row(children: <Widget>[
-                          Text('北京',
+                          Text(_locationAddress,
                               style: TextStyle(
                                   color: MColors.text_grey_color,
                                   fontSize: 14)),
@@ -390,5 +376,11 @@ class JellyGardenState extends State<JellyGardenHome>
       });
       getData();
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    locationUtils.releaseLocation();
   }
 }

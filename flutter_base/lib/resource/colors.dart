@@ -12,4 +12,9 @@ class MColors{
   static const Color black = Color(0xFF000000);
   static const Color base_red_color = Color(0xFFFF569B);
   static const Color btn_blue_color = Color(0xFFEEF4FF);
+  static const Color color_grey_de = Color(0xFFDEDEDE);
+  static const Color color_grey_e = Color(0xFFEEEEEE);
+  static const Color color_grey_a0 = Color(0xFFA0A0A0);
+  static const Color color_blue_base = Color(0xFF5C87CB);
+
 }

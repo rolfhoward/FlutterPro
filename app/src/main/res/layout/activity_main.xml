@@ -27,5 +27,11 @@
         android:text="动态代理"
         app:layout_constraintTop_toBottomOf="@id/go_flutter"
         tools:ignore="MissingConstraints" />
-
+    <Button
+        android:id="@+id/go_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="视频服务"
+        app:layout_constraintTop_toBottomOf="@id/go_invocationHandler"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="通过设置Bitmap设置图片"/>
+    <ImageView
+        android:id="@+id/lib_image_preview1"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scaleType="fitXY"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="通过Canvas绘制图片"/>
+    <com.rolfhoward.video.record.ui.image.view.CustomImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="通过Surface绘制图片"/>
+    <SurfaceView
+        android:id="@+id/lib_image_preview2"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"/>
+</LinearLayout>

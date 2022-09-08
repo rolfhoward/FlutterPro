@@ -3,6 +3,7 @@ package com.qb.androidflutter
 import android.content.Intent
 import com.qb.androidflutter.dynamic_proxy.DynamicProxy
 import com.qb.libcommon.activity.BaseToolBarActivity
+import com.rolfhoward.video.record.ui.VideoHomeActivity
 import io.flutter.embedding.android.FlutterActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -13,10 +14,6 @@ class MainActivity : BaseToolBarActivity() {
 
     override fun initView() {
         super.initView();
-//        toolbar.setLogo(R.mipmap.ic_launcher)
-//        toolbar.title = "首页"
-//        toolbar.subtitle = "12344"
-//        toolbar.setSubtitleTextAppearance(this, R.style.ToolbarSubStyle)
         recyclerView.setOnClickListener {
             var intent = Intent(this, RecyclerViewActivity::class.java)
             startActivity(intent)
@@ -31,9 +28,9 @@ class MainActivity : BaseToolBarActivity() {
         go_invocationHandler.setOnClickListener {
             startActivity(Intent(this, DynamicProxy::class.java));
         }
-        var speed = GetUpAndDownloadSpeed();
-        System.out.println("====="+speed.getTotalUpSpeed())
-        System.out.println("====="+speed.getTotalDownloadSpeed())
-        System.out.println("====="+speed.getUpSpeedByUid(getApplicationInfo().uid))
+
+        go_video.setOnClickListener{
+            startActivity(Intent(this, VideoHomeActivity::class.java));
+        }
     }
 }
